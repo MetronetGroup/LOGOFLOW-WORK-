@@ -1,0 +1,11 @@
+if (SEPET != null && SEPET.Content.Items.Count > 0)
+{
+	try
+	{
+		SEPET.Content.Items.RemoveAt(SEPET.ActiveRowid);
+	}
+	catch (Exception ex)
+	{
+		Console.WriteLine("Hata oluştu: " + ex.Message);
+	}
+}

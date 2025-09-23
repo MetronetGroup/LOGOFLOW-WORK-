@@ -1,0 +1,9 @@
+string Query = "INSERT INTO TBL_GOREVLER (ACIKLAMA, TARIH) VALUES ("
+	+ NotYaz.Value.toSql() + ", "
+	+ Tarih.Value.toSqlDateTime() + ")";
+
+
+var result = Context.SqlExecuteNonQuery(SqlConnections.ToDoList,Query);
+
+
+

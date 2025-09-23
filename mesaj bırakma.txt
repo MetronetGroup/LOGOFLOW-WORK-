@@ -1,0 +1,33 @@
+for (int i = 0; i <TALEP.Content.Rows.Count; i++){
+	deger=Convert.ToString(TALEP.GetValue(TALEP_Columns.DURUM,TALEP.ActiveRowid));
+	if(deger == "TALEP ALINDI" ||deger == "INCELEMEDE"||deger == "MSJ")
+	{
+		MSJBTN.OpenWorkflowMappingData.AddOrUpdate("metin", metin);
+		MSJBTN.OpenWorkflowMappingData.AddOrUpdate("program", program);
+		MSJBTN.OpenWorkflowMappingData.AddOrUpdate("image", image);
+		MSJBTN.GenerateWorkflowLink(true);
+		MSJBTN.OpenWorkflow();
+	}else{
+		ShowMessage("Uyarı","Durum 'Talep alındı' veya 'INCELEMEDE' ise görüntüleyebilirsiz.",MessageType.Information);
+		
+	}
+	
+}
+//!nF.2025?++/78
+
+List<string> toList  = new List<string>();
+
+toList.Add(Eposta.Value);
+
+
+List<string> pdfNames = new List<string>();
+
+pdfNames.Add(pdf1.Name);
+
+List<string> reportNames = new List<string>();
+
+reportNames.Add(ReportActivitiesNamesClass.NReportWaitOperationActivity2);
+
+LFlowUtils.SendEMail(this.Context, Title.Value, Body.Value, toList,null,null,true,true,pdfNames,reportNames);
+
+var test = ReportActivitiesNamesClass.NReportWaitOperationActivity2;

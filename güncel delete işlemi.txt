@@ -1,0 +1,10 @@
+string program = Convert.ToString(ModulSec.Value);
+
+
+double id =StokModuluSorulari.GetValue(StokModuluSorulari_Columns.clm01_ID,StokModuluSorulari.ActiveRowid).ToDouble();
+
+string query= string.Format("DELETE FROM tbl_stok_modulu WHERE ID ={0}",id.toSql());
+
+
+
+burada format ile id ye göre delete işlemi yappıyoruz.

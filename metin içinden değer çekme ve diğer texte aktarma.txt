@@ -1,0 +1,9 @@
+string girilen = Convert.ToString(GirilenKelime.Value); 
+BU ŞEKİLDE ALDIK
+
+girelen = çıkan.value
+BU ŞEKİLDE EŞİTLEDİK
+
+
+
+BU İŞLEMLERİ AÇILIR LİSTE İÇİNDE YAPABİLİRİZ.

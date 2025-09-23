@@ -1,0 +1,24 @@
+string stokkodu = "";
+string stokadı = "";
+double birimfiyat = 0;
+
+if (URUNLER.Content != null)
+{
+	for (int i = 0; i < URUNLER.Content.Items.Count; i++)
+	{
+		try { stokkodu = URUNLER.Content.Items[i][URUNLER_Columns.STOK_KODU].ToString(); } catch { stokkodu = ""; }
+		try { stokadı = URUNLER.Content.Items[i][URUNLER_Columns.STOK_ADI].ToString(); } catch { stokadı = ""; }
+		try { birimfiyat = Convert.ToDouble(URUNLER.Content.Items[i][URUNLER_Columns.NET_FIYAT].ToString()); } catch { birimfiyat = 0; }
+		
+		Dictionary<string, object> satir = new Dictionary<string, object>();
+		satir.Add(URUNFIYATBILGISI_Columns.URUNKODU, stokkodu);
+		satir.Add(URUNFIYATBILGISI_Columns.URUNADI, stokadı);
+		satir.Add(URUNFIYATBILGISI_Columns.NETFIYAT, birimfiyat);
+		
+		URUNFIYATBILGISI.Content.AddRow(satir);
+		
+		
+		
+	}
+	
+}

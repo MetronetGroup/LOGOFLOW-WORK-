@@ -1,0 +1,10 @@
+string queryy = string.Format("select * from TBLIADETESLIMAT where SipNo = '{0}'",sip);
+var resultt = Context.SqlExecuteReader(SqlConnections.AKCAKOCA2025, queryy);
+
+
+if(resultt.Rows.Count==0){
+
+
+
+
+burda hem dinamik aldık hemde if içinde 0 a eşitse dedik.

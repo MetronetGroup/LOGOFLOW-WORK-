@@ -1,0 +1,8 @@
+if(SWITCH.Value.Value == true){
+	SEPET.Visibility=true;
+	
+}else{
+	SEPET.Visibility=false;
+	SEPET.Visibility=false;
+}
+VariableName	REDACIKLAMA

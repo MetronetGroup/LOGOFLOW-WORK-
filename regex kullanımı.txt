@@ -1,0 +1,16 @@
+string girilen = Convert.ToString(GirilenKelime.Value);
+girilen = girilen.ToLower();
+girilen = girilen
+	.Replace("ç", "c")
+	.Replace("ğ", "g")
+	.Replace("ı", "i")
+	.Replace("ö", "o")
+	.Replace("ş", "s")
+	.Replace("ü", "u");
+string donustur = System.Text.RegularExpressions.Regex.Replace(girilen, @"[^a-z]", "");
+DonusturulenKelime.Value = donustur;
+
+
+
+
+burada yazılan değeri string ifadeye çeviriyoruz asıl kullanım amacı budur.

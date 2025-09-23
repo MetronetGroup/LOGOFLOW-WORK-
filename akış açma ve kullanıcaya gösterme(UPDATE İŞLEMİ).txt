@@ -1,0 +1,14 @@
+var query="UPDATE TBL_GOREVLER SET FIRMA_ADI="+FIRMAADI.Value.toSql()+",BASLIK="+BASLIK.Value.toSql()+",ACIKLAMA="+ACIKLAMA.Value.toSql()+",TARIH="+TARIH.Value.toSqlDateTime()+" WHERE ID="+id.Value.toSql();
+
+var result= Context.SqlExecuteNonQuery(SqlConnections.connection,query); 
+  (c# koduna çekilen update işlemi yani güncelleyip getirme işlemi)
+
+
+
+
+
+YENIKAYIT.GenerateWorkflowLink(true);
+YENIKAYIT.OpenWorkflow();
+
+bu kodda akış açmak için önce açılıyor sonra kullanıcıya gösteriliyor
+butona basıldığında kod kısmının içine yazılıyor.

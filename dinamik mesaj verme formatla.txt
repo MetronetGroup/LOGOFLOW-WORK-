@@ -1,0 +1,1 @@
+ ShowMessage("Uyarı", string.Format("{0} Numaralı Sipariş Numarası Daha Önceden Alınmıştır.", sip), MessageType.Error);

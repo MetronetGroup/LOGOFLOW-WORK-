@@ -1,0 +1,25 @@
+string stokkodu = "";
+string stokadı = "";
+double birimfiyat = 0;
+
+if(URUNFIYATBILGISI !=null && URUNFIYATBILGISI.ActiveRowid>=0){
+	try{stokkodu=URUNFIYATBILGISI.GetValue(URUNFIYATBILGISI_Columns.URUNKODU,URUNFIYATBILGISI.ActiveRowid).ToString();}catch{stokkodu="";}
+	try{stokadı=URUNFIYATBILGISI.GetValue(URUNFIYATBILGISI_Columns.URUNADI,URUNFIYATBILGISI.ActiveRowid).ToString();}catch{stokadı="";}
+	try
+	{
+		birimfiyat = Convert.ToDouble(URUNFIYATBILGISI.GetValue(URUNFIYATBILGISI_Columns.NETFIYAT, URUNFIYATBILGISI.ActiveRowid));
+	}
+	catch
+	{
+		birimfiyat = 0;
+	}
+	
+	
+	
+	Dictionary<string, object> satir = new Dictionary<string, object>();
+	
+	
+	satir.Add(SEPET_Columns.URUNKODU,stokkodu);
+	satir.Add(SEPET_Columns.URUNADI,stokadı);
+	satir.Add(SEPET_Columns.NETFIYAT,birimfiyat);
+	SEPET.Content.AddRow(satir);}

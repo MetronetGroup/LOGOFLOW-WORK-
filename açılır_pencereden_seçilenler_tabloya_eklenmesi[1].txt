@@ -1,0 +1,159 @@
+faturano.Value=FATURASEC_Columns.INCKEYNO.ToString();
+//BURDA İLK OLARAK AÇILIR PENCEREDEKİ SÜTÜNLARIN İSİMLERİNİ EKLEDİĞİMİZ 
+//TABLODAKİ SÜTÜNLARIN İSİMLERİ SADECE EŞLESENLERİ İSİMLERİNİ HERBİRİNİ DEĞİŞKEN OLARAK ALIYORUZ.
+string StokKod="";string Stokadı="";string FısNo="";string tarıh="";string cariIsim="";string fiyat="";string inckeyno="";string carikod="";
+DateTime bugunTarıhı=LFlowUtils.GetNow();string kesfatno=GonderilecekNo.Value;
+
+//DAHA SONRA AÇILIR PENCERE İÇİN FOR AÇIP TEK TEK DÖNÜYORUZ.VE FOR DÖNGÜSÜNDEN DÖNEN VERİLERİ AŞAĞIDAKİ GİBİ DEĞİŞKENLERE EKLİYORUZ.
+for(int i = 0; i <FATURASEC.Content.Items.Count; i++){
+	
+	try{StokKod=FATURASEC.Content.Items[i][FATURASEC_Columns.STOK_KODU].ToString();}catch{StokKod="";}
+	try{Stokadı=FATURASEC.Content.Items[i][FATURASEC_Columns.STOK_ADI].ToString();}catch{Stokadı="";}
+	try{FısNo=FATURASEC.Content.Items[i][FATURASEC_Columns.FISNO].ToString();}catch{FısNo="";}
+	try{tarıh=FATURASEC.Content.Items[i][FATURASEC_Columns.STHAR_TARIH].ToString();}catch{FısNo="";}
+	try{cariIsim=FATURASEC.Content.Items[i][FATURASEC_Columns.CARI_ISIM].ToString();}catch{cariIsim="";}
+	try{fiyat=FATURASEC.Content.Items[i][FATURASEC_Columns.STHAR_NF].ToString();}catch{fiyat="";}
+	try{inckeyno=FATURASEC.Content.Items[i][FATURASEC_Columns.INCKEYNO].ToString();}catch{inckeyno="";}
+	try{carikod=FATURASEC.Content.Items[i][FATURASEC_Columns.STHAR_ACIKLAMA].ToString();}catch{carikod="";}
+//BURDA BİR ADET Dictionary OBJECT OLUŞTURUYORUZ VE BUNUN ADINI "satir" VERDİK DAHA satir.add ile tablonun ilgili sütününa ekliyoruz.
+	Dictionary<string, object> satir = new Dictionary<string, object>();
+	satir.Add(Tablo_Columns.StokKodu,StokKod);
+	satir.Add(Tablo_Columns.SiraNo,inckeyno);
+	satir.Add(Tablo_Columns.BelgeNo,FısNo);
+	satir.Add(Tablo_Columns.FatTarihi,tarıh);
+	satir.Add(Tablo_Columns.CariKod,carikod);
+	satir.Add(Tablo_Columns.CariIsim,cariIsim);
+	satir.Add(Tablo_Columns.Tutar,fiyat);
+	satir.Add(Tablo_Columns.KesTarih,bugunTarıhı);
+	satir.Add(Tablo_Columns.KesfatNo,kesfatno);
+	Tablo.Content.AddRow(satir);
+	
+}
+
+
+
+
+
+
+
+
+double tutar =Convert.ToDouble(SEPETKALEMLERI.Sum(SEPETKALEMLERI_Columns.TUTAR));
+
+return tutar;   TUTARI ALIR .
+
+
+
+
+salt okunur
+
+
+
+
+
+
+
+
+DEMO SİPARİŞ FORMU
+
+
+string URUNKODU ="";string URUNADI ="";string stokmiktar="";double fiyat= 0; double stok= STOKMIKTAR.Value.Value;
+double satısadedi=MIKTAR.Value.Value;
+if(satısadedi > 0){
+	if(satısadedi<=stok){
+		
+		for(int i =0; i < SIPARISKALEMLERI.Content.Items.Count; i++)
+		{
+			try{URUNKODU=SIPARISKALEMLERI.GetValue(SIPARISKALEMLERI_Columns.URUNKODU,SIPARISKALEMLERI.ActiveRowid).ToString();}catch{URUNKODU="";}
+			try{URUNADI=SIPARISKALEMLERI.GetValue(SIPARISKALEMLERI_Columns.URUNADI,SIPARISKALEMLERI.ActiveRowid).ToString();}catch{URUNADI="";}
+			try {stokmiktar=SIPARISKALEMLERI.GetValue(SIPARISKALEMLERI_Columns.STOKMIKTARI,SIPARISKALEMLERI.ActiveRowid).ToString();}catch{stokmiktar="";}
+			try {fiyat=SIPARISKALEMLERI.GetValue(SIPARISKALEMLERI_Columns.FIYAT,SIPARISKALEMLERI.ActiveRowid).ToDouble();}catch{fiyat=0;}
+			
+			STOKISMI.Value=URUNADI.ToString();
+			STOKMIKTAR.Value=stokmiktar.ToDouble();
+			MIKTAR.Focus();
+			
+		}
+		
+		double tutar = fiyat * satısadedi;
+		Dictionary<string, object> satir = new Dictionary<string, object>();
+		
+		satir.Add(SEPETKALEMLERI_Columns.URUNKODU,URUNKODU);
+		satir.Add(SEPETKALEMLERI_Columns.URUNADI,URUNADI);
+		satir.Add(SEPETKALEMLERI_Columns.STOKMIKTARI,stokmiktar);
+		satir.Add(SEPETKALEMLERI_Columns.FIYAT,fiyat);
+		satir.Add(SEPETKALEMLERI_Columns.TUTAR,tutar);
+		satir.Add(SEPETKALEMLERI_Columns.MIKTAR,satısadedi);
+		SEPETKALEMLERI.Content.AddRow(satir);
+		
+		
+		
+		STOKISMI.Value="";
+		STOKMIKTAR.Value=0;
+		MIKTAR.Value=0;
+		GIZLITEXT.Focus();
+		GENELTOPLAM.Value=Convert.ToDouble(tutar);
+		
+		
+		
+	}else{
+		ShowMessage("Uyarı","Miktar Stok Miktarından Büyük Olamaz !",MessageType.Information);
+		
+	};
+	
+}else{
+	ShowMessage("Uyarı","Miktar '0' Ve Eksi Değer Alamaz!",MessageType.Information);
+	MIKTAR.Value=0;
+	
+};
+
+
+0538 636 92 23 yelda 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+string URUNKODU ="";string URUNADI ="";string stokmiktar="";double fiyat= 0;
+
+
+try{URUNKODU=GELENURUNLER.GetValue(GELENURUNLER_Columns.URUNKODU,GELENURUNLER.ActiveRowid).ToString();}catch{URUNKODU="";}
+try{URUNADI=GELENURUNLER.GetValue(GELENURUNLER_Columns.URUNADI,GELENURUNLER.ActiveRowid).ToString();}catch{URUNADI="";}
+try {stokmiktar=GELENURUNLER.GetValue(GELENURUNLER_Columns.STOKMIKTAR,GELENURUNLER.ActiveRowid).ToString();}catch{stokmiktar="";}
+try {fiyat=GELENURUNLER.GetValue(GELENURUNLER_Columns.FIYAT,GELENURUNLER.ActiveRowid).ToDouble();}catch{fiyat=0;}
+
+Dictionary<string, object> satir = new Dictionary<string, object>();
+
+
+satir.Add(EKLENENURUNLER_Columns.URUNKODU,URUNKODU);
+satir.Add(EKLENENURUNLER_Columns.URUNADI,URUNADI);
+satir.Add(EKLENENURUNLER_Columns.STOKMIKTAR,stokmiktar);
+satir.Add(EKLENENURUNLER_Columns.FIYAT,fiyat);
+EKLENENURUNLER.Content.AddRow(satir);
+
+
+
+
+

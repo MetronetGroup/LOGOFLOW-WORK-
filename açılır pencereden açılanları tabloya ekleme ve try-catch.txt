@@ -1,0 +1,18 @@
+
+
+string URUNKODU ="";string URUNADI ="";string stokmiktar="";double fiyat= 0;
+
+
+try{URUNKODU=GELENURUNLER.GetValue(GELENURUNLER_Columns.URUNKODU,GELENURUNLER.ActiveRowid).ToString();}catch{URUNKODU="";}
+try{URUNADI=GELENURUNLER.GetValue(GELENURUNLER_Columns.URUNADI,GELENURUNLER.ActiveRowid).ToString();}catch{URUNADI="";}
+try {stokmiktar=GELENURUNLER.GetValue(GELENURUNLER_Columns.STOKMIKTAR,GELENURUNLER.ActiveRowid).ToString();}catch{stokmiktar="";}
+try {fiyat=GELENURUNLER.GetValue(GELENURUNLER_Columns.FIYAT,GELENURUNLER.ActiveRowid).ToDouble();}catch{fiyat=0;}
+
+Dictionary<string, object> satir = new Dictionary<string, object>();
+
+
+satir.Add(EKLENENURUNLER_Columns.URUNKODU,URUNKODU);
+satir.Add(EKLENENURUNLER_Columns.URUNADI,URUNADI);
+satir.Add(EKLENENURUNLER_Columns.STOKMIKTAR,stokmiktar);
+satir.Add(EKLENENURUNLER_Columns.FIYAT,fiyat);
+EKLENENURUNLER.Content.AddRow(satir);

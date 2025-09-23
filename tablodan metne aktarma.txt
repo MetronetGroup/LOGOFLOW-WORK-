@@ -1,0 +1,7 @@
+double id =StokModuluSorulari.GetValue(StokModuluSorulari_Columns.clm01 _ID,StokModuluSorulari.ActiveRowid).ToDouble();
+
+
+
+BURADA TABLODAN İD DEĞERİNİ ÇEKİYORUZ.
+
+VE METNE AKTARIREKN AYNI ŞEKİLDE VALUE EŞİTLİYORUZ.

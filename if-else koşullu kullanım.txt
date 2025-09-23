@@ -1,0 +1,30 @@
+string program = Convert.ToString(ModulSec.Value);
+ModulSec.Focus();
+
+
+string cevap = Convert.ToString(Cevap.Value).ToUpper();
+if (!(cevap == "A" || cevap == "B" || cevap == "C" || cevap == "D" || cevap == "E"))
+{
+	ShowMessage("Hatalı Giriş ❌", "Cevap sadece A, B, C, D veya E olabilir!", MessageType.Warning);
+	Cevap.Value="";
+	Cevap.Focus();
+	
+}else{if (program == "Fatura")
+	{
+		string query = "INSERT INTO tbl_fatura_modulu VALUES ("
+			+ Convert.ToString(SoruIcerigi.Value).ToUpper().toSql() + ","
+			+ Convert.ToString(A.Value).ToUpper().toSql() + ","
+			+ Convert.ToString(B.Value).ToUpper().toSql() + ","
+			+ Convert.ToString(C.Value).ToUpper().toSql() + ","
+			+ Convert.ToString(D.Value).ToUpper().toSql() + ","
+			+ Convert.ToString(E.Value).ToUpper().toSql() + ","
+			+ cevap.toSql() + ");";
+		
+		var result = Context.SqlExecuteNonQuery(SqlConnections.DiaSinav, query);
+		
+		SoruIcerigi.Value = ""; A.Value = ""; B.Value = ""; C.Value = ""; D.Value = ""; E.Value = ""; Cevap.Value = "";
+	}
+
+
+
+BURADA BİRDEN ÇOK KOŞUL İLE İF KULLANIMMI YAPTIK AYNI ZAMANDA ELSE İF KULLANDIK.
