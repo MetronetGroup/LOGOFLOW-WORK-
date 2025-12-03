@@ -1,0 +1,5 @@
+string Plasiyer = "";
+
+Plasiyer = Context.CurrentUser.UserName;
+
+return Plasiyer;
